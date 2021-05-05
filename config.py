@@ -90,6 +90,14 @@ keys = [
         desc="Group right"), #LV
     Key(["control", "mod1"], "Left", lazy.screen.prev_group(),
         desc="Group left"), #LV
+    Key(["mod1"], "F10", lazy.group.setlayout('max'),
+        desc="Maximize"), #LV
+    Key(["mod4"], "Up", lazy.group.setlayout('max'),
+        desc="Maximize"), #LV
+    Key(["control", "mod1"], "Down", lazy.group.setlayout('ratiotile'),
+        desc="Expose"), #LV
+    Key(["control", "mod1"], "Up", lazy.group.setlayout('columns'),
+        desc="End of Expose"), #LV
 
 ]
 
@@ -109,20 +117,21 @@ for i in groups:
     ])
 
 layouts = [
-    #layout.Columns(border_focus_stack='#d75f5f'),
-    #layout.Max(),
+    layout.Columns(border_focus_stack='#d75f5f'),
+    layout.Max(),
     # Try more layouts by unleashing below layouts.
-    #layout.Stack(num_stacks=2),
-    #layout.Bsp(),
-    #layout.Matrix(),
-    #layout.MonadTall(),
-    #layout.MonadWide(),
-    # layout.RatioTile(),
-    #layout.Tile(),
-    #layout.TreeTab(),
+    # layout.Stack(num_stacks=2),
+    # layout.Bsp(),
+    # layout.Matrix(),
+    # layout.MonadTall(),
+    # layout.MonadWide(),
+     layout.RatioTile(border_width=20), # something like Expose
+    # layout.Tile(),
+    # layout.TreeTab(),
     # layout.VerticalTile(),
     # layout.Zoomy(),
-    layout.Floating2(),
+    # layout.Floating2(),
+    # layout.Expose(),
 ]
 
 widget_defaults = dict(
@@ -136,7 +145,7 @@ screens = [
     Screen(
         bottom=bar.Bar(
             [
-                #widget.CurrentLayout(),
+                widget.CurrentLayout(),
                 widget.GroupBox(),
                 widget.Prompt(),
                 widget.WindowName(),
